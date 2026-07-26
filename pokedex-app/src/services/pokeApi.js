@@ -15,4 +15,4 @@ export async function getRandomPokemonByType(type) {
 
   const response = await axios.get(chosen.url);
   return response.data;
-}
+}   

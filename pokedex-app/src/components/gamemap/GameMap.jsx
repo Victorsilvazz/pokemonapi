@@ -1,14 +1,19 @@
+import { useGameStore } from '../../store/gameStore'
 import { MAP_WIDTH, MAP_HEIGHT, getQuadrantFromClick } from '../../data/mapLayout';
 
-function GameMap({ playerPosition, onQuadrantClick }) {
-    function handleMapClick(event) {
+function GameMap() {
+       const playerPosition = useGameStore((state) => state.playerPosition);
+       const isPlayervisible = useGameStore((state) => state.isPlayervisible);
+       const goToQuadrant = useGameStore((state) => state.goToQuadrant);
+
+       function handleMapClick(event) {
         const rect = event.currentTarget.getBoundingClientRect();
         const clickX = event.clientX - rect.left;
         const clickY = event.clientY - rect.top;
 
         const quadrantName = getQuadrantFromClick(clickX, clickY);
-        onQuadrantClick(quadrantName);
-    }
+        goToQuadrant(quadrantName);
+       }
 
     return (
         <div

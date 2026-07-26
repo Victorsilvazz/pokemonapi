@@ -5,7 +5,11 @@ import { getRandomPokemonByType } from './services/pokeApi';
 import './App.css';
 
 function App() {
-  const [playerPosition, setPlayerPosition] = useState(INITIAL_POSITION);
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <GameMap/>
+      </div>
+  );
 
   async function handleQuadrantClick(quadrantName) {
     const quadrant = QUADRANTS[quadrantName];
@@ -17,12 +21,6 @@ function App() {
     const pokemon = await getRandomPokemonByType(randomType);
     console.log(pokemon);
   }
-
-  return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <GameMap playerPosition={playerPosition} onQuadrantClick={handleQuadrantClick} />
-      </div>
-  );
+  
 }
-
 export default App;
