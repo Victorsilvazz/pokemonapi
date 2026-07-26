@@ -1,5 +1,6 @@
 import { useGameStore } from '../../store/gameStore'
 import { MAP_WIDTH, MAP_HEIGHT, getQuadrantFromClick } from '../../data/mapLayout';
+import SearchBalloon from '../SearchBalloon/SearchBalloon';
 
 function GameMap() {
        const playerPosition = useGameStore((state) => state.playerPosition);
@@ -39,6 +40,7 @@ function GameMap() {
         top: playerPosition.y,
       }}
       />
+      <SearchBalloon/>
      </div> 
     );
 }

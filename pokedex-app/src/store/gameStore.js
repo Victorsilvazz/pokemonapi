@@ -45,7 +45,12 @@ export const useGameStore = create((set, get) => ({
 
         const types = quadrant.types;
         const randomType = types[Math.floor(Math.random() * types.length)];
-        const pokemon = await getRandomPokemonByType(randomType);
+        const MIN_SEARCH_TIME = 2500;
+
+        const[pokemon] = await Promise.all([
+            getRandomPokemonByType(randomType),
+            new Promise((resolve) => setTimeout(resolve, MIN_SEARCH_TIME)),
+        ]);
 
         set({ isSearching: false, encounterPokemon: pokemon});
     },
