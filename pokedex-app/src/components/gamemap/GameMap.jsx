@@ -3,6 +3,8 @@ import { MAP_WIDTH, MAP_HEIGHT, getQuadrantFromClick } from '../../data/mapLayou
 import SearchBalloon from '../SearchBalloon/SearchBalloon';
 import EncounterModal from '../EncounterModal/EncounterModal';
 import PokedexFullWarning from '../PokedexFullWarning/PokedexFullWarning';
+import PokedexButton from '../PokedexButton/PokedexButton';
+import PokedexModal from '../PokedexModal/PokedexModal';
 
 function GameMap() {
        const playerPosition = useGameStore((state) => state.playerPosition);
@@ -45,6 +47,8 @@ function GameMap() {
       <SearchBalloon />
       <PokedexFullWarning />
       <EncounterModal />
+      <PokedexButton />
+      <PokedexModal />
      </div> 
     );
 

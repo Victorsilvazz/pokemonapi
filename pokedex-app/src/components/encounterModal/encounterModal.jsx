@@ -1,8 +1,12 @@
 import { useGameStore } from '../../store/gameStore';
+import PokemonListItem from '../PokemonListItem/PokemonListItem';
+import { getTypeColors } from '../../data/typeColors';
 
 function EncounterModal() {
     const encounterPokemon = useGameStore((state) => state.encounterPokemon);
     const capturePokemon = useGameStore((state) => state.capturePokemon);
+    const togglePokedex = useGameStore((state) => state.togglePokedex);
+    const removePokemon = useGameStore((state) => state.removePokemon);
     const searchPokemon = useGameStore((state) => state.searchPokemon);
     const goBack = useGameStore((state) => state.goBack);
 
@@ -19,37 +23,37 @@ function EncounterModal() {
             style={{ width: 370, height: 366 }}
             onClick={(event) => event.stopPropagation()}
             >
-                <div className="flex justify-between items-center border-b border-amber-800/10 pb-3 mb-4">
+            <div className="flex justify-between items-center border-b border-amber-800/10 pb-3 mb-4">
                  <span className="font-bold text-gray-900 uppercase tracking-wide">
                     {pokemonName}
                 </span>
-                <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2">
                     <span className="text-xs text-gray-500">Tipo:</span>
-                    <span className="bg-purple-700 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase">
+                    <span className={`${getTypeColors(pokemonType)} text-white text-xs font-semibold px-3 py-1 rounded-full uppercase`}>
                         {pokemonType}
                         </span>
                     </div>
                 </div>
 
-                <div className="flex-1 flex items-center justify-center">
+            <div className="flex-1 flex items-center justify-center">
                     <img src={pokemonImage} alt={pokemonName} className="w-40 h-40" />
                 </div>
 
-                <div className="flex gap-2">
-                <button
+            <div className="flex gap-2">
+            <button
                     onClick={capturePokemon}
                     className="flex-1 bg-green-600 hover:bg-green-700 text-white text-xs font-bold py-2.5 rounded-md transition-color"
                     >
                     CAPTURAR
                 </button>
                     
-                <button
+            <button
                     onClick={searchPokemon}
                     className="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-2.5 rounded-md transition-color"
                     > 
                     CONTINUAR PROCURANDO
                 </button>
-                <button
+            <button
                     onClick={goBack}
                     className="flex-1 bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray700 text-xs font-bold py-2.5 rounded-md transition-color"
                     > 

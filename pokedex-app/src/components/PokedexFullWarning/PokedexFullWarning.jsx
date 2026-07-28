@@ -16,18 +16,17 @@ function PokedexFullWarning () {
     if (!isPokedexFullWarning) return null;
 
     return (
-        <div
-        className="absolute bg-blue-50 border border-blue-400 text-blue-900 text-sm px-4 py-3 rounded-lg shadow-lg text-center max-w-xs"
+        <img
+            src="/pokedex-cheia.png"
+            alt="Pokédex cheia! Libere espaço na sua Pokédex antes de capturar outro Pokémon."
+            className="absolute"
         style={{
             left: playerPosition.x + 32,
-            top: playerPosition.y -70,
+            top: playerPosition.y +60,
             transform: 'translateX(-50%)',
+            width: 220,
         }} 
-        >
-        <strong>Pokédex cheia!</strong>
-        <br />
-        Libere espaço na sua Pokédex antes de capturar outro Pokémon.
-        </div>
+        />
     );
 
 }
