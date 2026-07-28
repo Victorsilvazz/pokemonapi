@@ -1,6 +1,8 @@
 import { useGameStore } from '../../store/gameStore'
 import { MAP_WIDTH, MAP_HEIGHT, getQuadrantFromClick } from '../../data/mapLayout';
 import SearchBalloon from '../SearchBalloon/SearchBalloon';
+import EncounterModal from '../EncounterModal/EncounterModal';
+import PokedexFullWarning from '../PokedexFullWarning/PokedexFullWarning';
 
 function GameMap() {
        const playerPosition = useGameStore((state) => state.playerPosition);
@@ -40,9 +42,12 @@ function GameMap() {
         top: playerPosition.y,
       }}
       />
-      <SearchBalloon/>
+      <SearchBalloon />
+      <PokedexFullWarning />
+      <EncounterModal />
      </div> 
     );
+
 }
 
 export default GameMap;

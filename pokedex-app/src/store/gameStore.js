@@ -19,6 +19,7 @@ export const useGameStore = create((set, get) => ({
     toast: null,
 
     async goToQuadrant(quadrantName) {
+        console.log('1. Clicou no quadrante:', quadrantName);
         const quadrant = QUADRANTS[quadrantName];
 
         if (get().capturedPokemons.length >= MAX_CAPTURED) {
@@ -52,7 +53,8 @@ export const useGameStore = create((set, get) => ({
             new Promise((resolve) => setTimeout(resolve, MIN_SEARCH_TIME)),
         ]);
 
-        set({ isSearching: false, encounterPokemon: pokemon});
+        console.log('2. Pokemon encontrado:', pokemon);
+        set({ isSearching: false, encounterPokemon: pokemon });
     },
     
         capturePokemon() {
@@ -78,7 +80,7 @@ export const useGameStore = create((set, get) => ({
     },
     
    goBack() {
-    set({ playerPosition: null, isPlayerVisible: false });
+    set({ encounterPokemon: null, isPlayerVisible: false });
     setTimeout(() => {
       set({ playerPosition: INITIAL_POSITION, isPlayerVisible: true, currentQuadrant: null });      
     }, 300);
