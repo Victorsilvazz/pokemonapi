@@ -38,14 +38,14 @@ function PokedexModal() {
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/40">
             <div
-            className="bg-amber-50 border-2 border-amber-800/20 rounded-xl shadow-2x1 p-6 w-[560px] max-h[80vh] flex flex-col"
+            className="bg-amber-50 border-2 border-amber-800/20 rounded-xl shadow-2x1 p-6 w-[800px] max-h[80vh] flex flex-col"
             onClick={(event) => event.stopPropagation()}
             >
             <div className="flex justify-between items-center border-b border-amber-800/10 pb-3 mb-3">
                 <span className="font-bold uppercase tracking-wide">Pokémons Capturados</span>
                 <div className="flex items-center gap-3">
                     <span className="text-sm text-gray-600">{capturedPokemons.length}/6</span>
-                    <button onClick={togglePokedex} className="text-gray-500 hover:textgray-800 text-lg">
+                    <button onClick={togglePokedex} className="text-gray-500 hover:textgray-800 text-lg" arial-label="Fechar Pokédex">
                         X
                     </button>
                 </div>
