@@ -44,7 +44,7 @@ function PokedexModal() {
             <div className="flex justify-between items-center border-b border-amber-800/10 pb-3 mb-3">
                 <span className="font-bold uppercase tracking-wide">Pokémons Capturados</span>
                 <div className="flex items-center gap-3">
-                    <span className="text-sm text-gray-600">{CapturedPokemons.length}/6</span>
+                    <span className="text-sm text-gray-600">{capturedPokemons.length}/6</span>
                     <button onClick={togglePokedex} className="text-gray-500 hover:textgray-800 text-lg">
                         X
                     </button>

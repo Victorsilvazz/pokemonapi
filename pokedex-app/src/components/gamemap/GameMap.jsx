@@ -5,10 +5,11 @@ import EncounterModal from '../EncounterModal/EncounterModal';
 import PokedexFullWarning from '../PokedexFullWarning/PokedexFullWarning';
 import PokedexButton from '../PokedexButton/PokedexButton';
 import PokedexModal from '../PokedexModal/PokedexModal';
+import Toast from '../Toast/Toast';
 
 function GameMap() {
        const playerPosition = useGameStore((state) => state.playerPosition);
-       const isPlayervisible = useGameStore((state) => state.isPlayervisible);
+       const isPlayerVisible = useGameStore((state) => state.isPlayerVisible);
        const goToQuadrant = useGameStore((state) => state.goToQuadrant);
 
        function handleMapClick(event) {
@@ -36,7 +37,7 @@ function GameMap() {
       <img
       src="/ash.png"    
       alt="Ash"
-      className="absolute transition-all duration-300"
+      className={`absolute transition-all duration-300 ${isPlayerVisible ? 'opacity-100' : 'opacity-0'}`}
       style={{
         width:64,
         height:64,
@@ -49,6 +50,7 @@ function GameMap() {
       <EncounterModal />
       <PokedexButton />
       <PokedexModal />
+      <Toast />
      </div> 
     );
 

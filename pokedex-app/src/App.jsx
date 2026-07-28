@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="w-screen h-screen overflow-hidden flex items-center justify-center bg-gray-900">
       <GameMap/>
       </div>
   );

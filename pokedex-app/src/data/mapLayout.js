@@ -4,19 +4,19 @@ export const MAP_HEIGHT = 1080;
 
 export const QUADRANTS = {
     grama: {
-        position: { x: 690, y: 190 },
+        position: { x: 676, y: 180 },
         types: ['bug', 'flying', 'electric'],
     },
     cemiterio: {
-        position: { x:1357, y: 150 },
+        position: { x:1385, y: 135 },
         types: ['ghost', 'psychic'],
     },
     agua: {
-        position: { x: 645, y: 570 },
+        position: { x: 628, y: 575 },
         types: ['water', 'ice'],
     },
     caverna: {
-        position: { x: 1357, y: 700 },
+        position: { x: 1383, y: 720 },
         types: ['rock', 'ground', 'fire'],
     },
 };
