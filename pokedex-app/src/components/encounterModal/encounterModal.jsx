@@ -22,6 +22,8 @@ function EncounterModal() {
             className="bg-amber-50 border-2 border-amber-800/20 rounded-x1 shadow-2x1 p-5 flex-col pointer-events-auto"
             style={{ width: 370, height: 366 }}
             onClick={(event) => event.stopPropagation()}
+            role="dialog"
+            arial-label={`Pokémon encontrado: ${pokemonName}`}
             >
             <div className="flex justify-between items-center border-b border-amber-800/10 pb-3 mb-4">
                  <span className="font-bold text-gray-900 uppercase tracking-wide">
@@ -42,7 +44,7 @@ function EncounterModal() {
             <div className="flex gap-2">
             <button
                     onClick={capturePokemon}
-                    className="flex-1 bg-green-600 hover:bg-green-700 text-white text-xs font-bold py-2.5 rounded-md transition-color"
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white text-xs font-bold py-2.5 rounded-md transition-color focus:outline-none focus:ring-2 focus: ring-green-800 focus:ring-offset-2"
                     >
                     CAPTURAR
                 </button>
