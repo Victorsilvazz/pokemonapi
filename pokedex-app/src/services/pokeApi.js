@@ -1,7 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BASE_URL = 'https://pokeapi.co/api/v2';
-
+const BASE_URL = "https://pokeapi.co/api/v2";
 
 export async function getPokemonByType(type) {
   const response = await axios.get(`${BASE_URL}/type/${type}`);
@@ -15,4 +14,4 @@ export async function getRandomPokemonByType(type) {
 
   const response = await axios.get(chosen.url);
   return response.data;
-}   
+}
