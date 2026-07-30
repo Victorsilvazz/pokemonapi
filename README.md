@@ -1,4 +1,4 @@
-# Pokédex RPG
+# Pokemon RPG
 
 Aplicação em React que reimagina a Pokédex como um mini RPG top-down: o jogador explora um mapa dividido em 4 quadrantes (grama, cemitério, água e caverna), cada um associado a tipos específicos de Pokémon, e captura os Pokémons sorteados via consumo da [PokeAPI](https://pokeapi.co/).
 
