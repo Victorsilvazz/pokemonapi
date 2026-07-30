@@ -1,11 +1,18 @@
 import { create } from 'zustand';
-import { QUADRANTS, INITIAL_POSITION } from '../data/mapLayout';
+import { getMapConfig } from '../data/mapLayout';
 import { getRandomPokemonByType } from '../services/pokeApi'
 
 const MAX_CAPTURED = 6;
 
+function getInitialIsPortrait() {
+    if (typeof window === 'undefined') return false;
+    return window.innerHeight > window.innerWidth;
+}
+
+
 export const useGameStore = create((set, get) => ({
-    playerPosition: INITIAL_POSITION,
+    isPortrait: getInitialIsPortrait(),
+    playerPosition: getMapConfig(getInitialIsPortrait()).INITIAL_POSITION,
     isPlayerVisible: true,
     currentQuadrant: null,
 
@@ -18,8 +25,25 @@ export const useGameStore = create((set, get) => ({
 
     toast: null,
 
+    searchToken: 0,
+
+    setOrientation(isPortrait) {
+        if(get().isPortrait === isPortrait) return;
+
+        const { INITIAL_POSITION } = getMapConfig(isPortrait);
+
+        set((state) => ({
+            isPortrait,
+            playerPosition: INITIAL_POSITION,
+            currentQuadrant: null,
+            encounterPokemon: null,
+            isSearching: false,
+            searchToken: state.searchToken + 1,
+        }));
+    },
+
     async goToQuadrant(quadrantName) {
-        console.log('1. Clicou no quadrante:', quadrantName);
+        const { QUADRANTS } = getMapConfig(get().isPortrait);
         const quadrant = QUADRANTS[quadrantName];
 
         if (get().capturedPokemons.length >= MAX_CAPTURED) {
@@ -27,20 +51,27 @@ export const useGameStore = create((set, get) => ({
             return;
         }
 
+        const token = get().searchToken;
+
         set({isPlayerVisible: false, currentQuadrant: quadrantName });
 
         setTimeout(() => {
+            if (get().searchToken !== token) return;
             set({ playerPosition: quadrant.position, isPlayerVisible: true});
         }, 300);
 
         setTimeout(() => {
-            get().searchPokemon();
+            if (get().searchToken !== token) return;
+            get().searchPokemon(token);
         }, 600);
     },
 
-    async searchPokemon() {
+    async searchPokemon(token) {
         const quadrantName = get().currentQuadrant;
+        const { QUADRANTS } = getMapConfig(get().isPortrait);
         const quadrant = QUADRANTS[quadrantName];
+
+        if(get().searchToken !== token) return;
 
         set({ isSearching: true, encounterPokemon: null });
 
@@ -53,7 +84,8 @@ export const useGameStore = create((set, get) => ({
             new Promise((resolve) => setTimeout(resolve, MIN_SEARCH_TIME)),
         ]);
 
-        console.log('2. Pokemon encontrado:', pokemon);
+        if (get().searchToken !== token) return;
+
         set({ isSearching: false, encounterPokemon: pokemon });
     },
     
@@ -82,6 +114,7 @@ export const useGameStore = create((set, get) => ({
    goBack() {
     set({ encounterPokemon: null, isPlayerVisible: false });
     setTimeout(() => {
+        const { INITIAL_POSITION } = getMapConfig(get().isPortrait);
       set({ playerPosition: INITIAL_POSITION, isPlayerVisible: true, currentQuadrant: null });      
     }, 300);
    },

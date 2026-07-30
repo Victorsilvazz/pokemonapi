@@ -1,5 +1,8 @@
 import { useGameStore } from '../../store/gameStore'
-import { MAP_WIDTH, MAP_HEIGHT, getQuadrantFromClick } from '../../data/mapLayout';
+import { getMapConfig, getQuadrantFromClick } from '../../data/mapLayout';
+import { useOrientation } from '../../hooks/useOrientation';
+import { useScreenScale } from '../../hooks/useScreenScale';
+import { useEffect } from 'react';
 import SearchBalloon from '../SearchBalloon/SearchBalloon';
 import EncounterModal from '../EncounterModal/EncounterModal';
 import PokedexFullWarning from '../PokedexFullWarning/PokedexFullWarning';
@@ -12,26 +15,38 @@ function GameMap() {
        const isPlayerVisible = useGameStore((state) => state.isPlayerVisible);
        const goToQuadrant = useGameStore((state) => state.goToQuadrant);
 
+       const setOrientation = useGameStore((state) => state.setOrientation);
+
+       const isPortrait = useOrientation();
+       const { MAP_WIDTH, MAP_HEIGHT, MAP_IMAGE } = getMapConfig(isPortrait);
+       const scale = useScreenScale(MAP_WIDTH, MAP_HEIGHT);
+
+       useEffect(() => {
+        setOrientation(isPortrait);
+       }, [isPortrait, setOrientation]);
+
        function handleMapClick(event) {
         const rect = event.currentTarget.getBoundingClientRect();
-        const clickX = event.clientX - rect.left;
-        const clickY = event.clientY - rect.top;
+        const clickX = (event.clientX - rect.left) / scale;
+        const clickY = (event.clientY - rect.top) / scale;
 
-        const quadrantName = getQuadrantFromClick(clickX, clickY);
+        const quadrantName = getQuadrantFromClick(clickX, clickY, MAP_WIDTH, MAP_HEIGHT);
         goToQuadrant(quadrantName);
        }
 
     return (
-        <div
-        onClick={handleMapClick}
-        className="relative cursor-pointer"
-        style={{
-            width: '100vw',
-            height: '100vh',
-            backgroundImage: 'url(/mapa.png)',
-            backgroundSize: 'contain',
+        <div className="w-screen h-screen flex items-center justify-center bg-black overflow-hidden">
+          <div
+          onClick={handleMapClick}
+          className="relative cursor-pointer flex-shrink-0"
+          style={{
+            width: MAP_WIDTH,
+            height: MAP_HEIGHT,
+            backgroundImage: `url(${MAP_IMAGE})`,
+            backgroundSize: '100% 100%',
             backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
+            transform: `scale(${scale})`,
+            transformOrigin: 'center center',
         }}
         >
       <img
@@ -52,6 +67,7 @@ function GameMap() {
       <PokedexModal />
       <Toast />
      </div> 
+    </div>
     );
 
 }

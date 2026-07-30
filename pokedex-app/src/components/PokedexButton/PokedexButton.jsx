@@ -10,7 +10,7 @@ function PokedexButton() {
             event.stopPropagation();
             togglePokedex();
         }}
-        className="absolute top-20 left-35 z-40 flex flex-col items-center"
+        className="absolute top-22 left-3 z-40 flex flex-col items-center"
         >
          <div className="relative bg-orange-400 border-2 border-orange-200 rounded-lg p-2 shadow-md">
             <img src="/pokedex.png" alt="Pokédex" className="w-28" style={{ height: 97 }} />
