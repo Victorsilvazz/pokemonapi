@@ -38,7 +38,7 @@ function PokedexModal() {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/40">
       <div
-        className="bg-amber-50 border-2 border-amber-800/20 rounded-xl shadow-2x1 p-6 w-[800px] max-h[80vh] flex flex-col"
+        className="bg-amber-50 border-2 border-amber-800/20 rounded-xl shadow-2xl p-6 w-[800px] max-h-[80vh] flex flex-col"
         onClick={(event) => event.stopPropagation()}
         role="dialog"
         arial-label="Pokémons capturados"
@@ -53,8 +53,8 @@ function PokedexModal() {
             </span>
             <button
               onClick={togglePokedex}
-              className="text-gray-500 hover:textgray-800 text-lg"
-              arial-label="Fechar Pokédex"
+              className="text-gray-500 hover:text-gray-800 text-lg"
+              aria-label="Fechar Pokédex"
             >
               X
             </button>
