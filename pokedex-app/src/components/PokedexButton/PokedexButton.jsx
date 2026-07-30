@@ -19,7 +19,7 @@ function PokedexButton() {
           className="w-28"
           style={{ height: 97 }}
         />
-        <span className="absolute -top-3 -right-3 bg-gray-100 text-orange-400 text-up font-bold w-7 h-7 rounded-full flex items-center justify-center border-2 border-white shadow-md">
+        <span className="absolute -top-3 -right-3 bg-gray-100 text-orange-400 text-xs font-bold w-7 h-7 rounded-full flex items-center justify-center border-2 border-white shadow-md">
           {capturedPokemons.length}
         </span>
       </div>

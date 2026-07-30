@@ -54,13 +54,13 @@ function EncounterModal() {
 
           <button
             onClick={() => searchPokemon(searchToken)}
-            className="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-2.5 rounded-md transition-color"
+            className="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-2.5 rounded-md transition-colors"
           >
             CONTINUAR PROCURANDO
           </button>
           <button
             onClick={goBack}
-            className="flex-1 bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 text-xs font-bold py-2.5 rounded-md transition-color"
+            className="flex-1 bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 text-xs font-bold py-2.5 rounded-md transition-colors"
           >
             VOLTAR
           </button>

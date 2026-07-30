@@ -41,7 +41,7 @@ function PokedexModal() {
         className="bg-amber-50 border-2 border-amber-800/20 rounded-xl shadow-2xl p-6 w-[800px] max-h-[80vh] flex flex-col"
         onClick={(event) => event.stopPropagation()}
         role="dialog"
-        arial-label="Pokémons capturados"
+        aria-label="Pokémons capturados"
       >
         <div className="flex justify-between items-center border-b border-amber-800/10 pb-3 mb-3">
           <span className="font-bold uppercase tracking-wide">
