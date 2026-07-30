@@ -54,7 +54,7 @@ src/
 
 ```bash
 # Clonar o repositório
-git clone <url-do-repositorio>
+git clone https://github.com/Victorsilvazz/PokemonRPG.git
 cd pokedex-app
 
 # Instalar dependências
